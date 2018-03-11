@@ -144,4 +144,17 @@ public String toString() {
 **除了字符串对象会这么做，其他基本类型和对象表现都是使用StringBuilder进行“+”操作符的操作。**  
 而两个字符串常量相拼接的时候，jvm的做法是用**字符串常量池**的那一套做法。
 
+### String、StringBuffer、StringBuilder的区别
+##### 执行速度：StringBuilder>StringBuffer>String；
+##### StringBuffer是线程安全的，StringBuilder是不安全的。
+由于String是不可变的，所以对其发生改变的时候总是要通过上文描述的做法去完成。  
+由于StringBuffer中方法带了大量**synchronized**关键字保证了其线程安全，同时也牺牲了其执行速度。  
+##### 使用场景：
+- String适合少量字符串操作。
+- StringBuffer适合多线程对字符缓冲区操作。
+- StringBuilder适合单线程对字符缓冲区操作。
+
+### Equals rather than ==
+在字符串比较当中，应该使用**Equals**方法而非==比较符。
+
 参考资料：String源码和StringBuilder源码。
