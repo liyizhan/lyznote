@@ -176,6 +176,22 @@ public class MyLinkedList<T> {
         return length;
     }
 
+    //反转列表
+    public void reverse(){
+        if(length==0||length==1){
+            return;
+        }
+        Node<T> p=head.next;
+        head.next=null;
+        Node<T> q;
+        while(p!=null){
+            q=p.next;
+            p.next=head.next;
+            head.next=p;
+            p=q;
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder sb=new StringBuilder();
