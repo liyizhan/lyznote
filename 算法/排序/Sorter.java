@@ -47,7 +47,7 @@ public class Sorter {
         for(int i=0;i<elements.length-1;i++){
             if(elements[i]>elements[i+1]){
                 int j=i+1;
-                int temp=elements[i+1];
+                int temp=elements[j];
                 do{
                     j--;
                     elements[j+1]=elements[j];
@@ -58,6 +58,31 @@ public class Sorter {
                 System.out.print(elements[k]+" ");
             }
             System.out.println();
+        }
+    }
+
+    public static void shellSort(int[] elements,int[] increments){
+        for(int i=0;i<increments.length;i++){
+            System.out.println("dk:"+increments[i]);
+            shellInsert(elements,increments[i]);
+        }
+    }
+
+    private static void shellInsert(int[] elements,int dk){
+        for(int i=0;i<elements.length-dk;i++){
+            if(elements[i]>elements[i+dk]){
+                int j=i+dk;
+                int temp=elements[j];
+                do{
+                    j-=dk;
+                    elements[j+dk]=elements[j];
+                }while (j-dk>0&&temp<elements[j-dk]);
+                elements[j]=temp;
+                for(int k=0;k<elements.length;k++){     //跟踪每一趟排序轨迹，实际排序不需要
+                    System.out.print(elements[k]+" ");
+                }
+                System.out.println();
+            }
         }
     }
 }
